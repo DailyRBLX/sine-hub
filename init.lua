@@ -1,6 +1,6 @@
 local Places = {
 	--[] = {Script = "",Name = ""},
-	[5253186791] = {Script = "https://raw.githubusercontent.com/DailyRBLX/sine-hub/main/Tower%20of%20Hell.lua",Name = "Tower of Hell"},
+	[1962086868] = {Script = "https://raw.githubusercontent.com/DailyRBLX/sine-hub/main/Tower%20of%20Hell.lua",Name = "Tower of Hell"},
 }
 
 function initplace()
