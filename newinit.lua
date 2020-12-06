@@ -59,7 +59,9 @@ function SetupGui(gamename,buttoncallback)
 	buttonfunc = Button.MouseButton1Click:Connect(function()
 		if not clicked then
 			clicked = true
-			buttoncallback()
+			coroutine.resume(coroutine.create(function()
+				buttoncallback()			
+			end))
 			holder2:Play()
 			hubtitle2:Play()
 			hubtitle_seperator2:Play()
