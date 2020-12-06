@@ -1,4 +1,5 @@
-local GUI = script:FindFirstChild("SINEHUB")
+local GUI = game:GetObjects("rbxassetid://6051462819")[1]
+GUI.Parent = game.CoreGui
 local GUIHolder = GUI:FindFirstChild("Holder")
 local GameTitle = GUIHolder:FindFirstChild("GameTitle")
 local HubTitle = GUIHolder:FindFirstChild("HubTitle")
@@ -26,7 +27,6 @@ function TweenTextTransparency(setting,uiobject,inout)
 end
 
 function SetupGui(gamename,buttoncallback)
-	GUI.Parent = game.Players.LocalPlayer.PlayerGui
 	local clicked = false
 	local buttonfunc = nil;
 	local holder = TweenTransparency(0,GUIHolder,"in")
