@@ -59,8 +59,11 @@ function SetupGui(gamename,buttoncallback)
 	buttonfunc = Button.MouseButton1Click:Connect(function()
 		if not clicked then
 			clicked = true
+			game.Debris:AddItem(GUI,5)
 			coroutine.resume(coroutine.create(function()
-				buttoncallback()			
+				spawn(function()
+					buttoncallback()					
+				end)
 			end))
 			holder2:Play()
 			hubtitle2:Play()
