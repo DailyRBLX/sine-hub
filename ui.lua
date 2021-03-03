@@ -50,7 +50,7 @@ function Library:CreateTabHolder(HolderName)
 		
 		TabButton.Name = "TabButton"
 		TabButton.Parent = TabsHolder
-		TabButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		TabButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 		TabButton.BorderSizePixel = 0
 		TabButton.Position = UDim2.new(0.0121375592, 0, 0.0196560174, 0)
 		TabButton.Size = UDim2.new(0, 155, 0, 32)
@@ -84,7 +84,7 @@ function Library:CreateTabHolder(HolderName)
 		MainHolder.Name = "MainHolder"
 		MainHolder.Parent = TabButton
 		MainHolder.Active = true
-		MainHolder.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		MainHolder.BackgroundColor3 = Color3.fromRGB(38,38,38)
 		MainHolder.BorderSizePixel = 0
 		MainHolder.Position = UDim2.new(1.08900011, 0, 0, 0)
 		
@@ -99,7 +99,7 @@ function Library:CreateTabHolder(HolderName)
 		UIListLayout.Parent = Main
 		UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		UIListLayout.Padding = UDim.new(0, 4)
+		UIListLayout.Padding = UDim.new(0, 6)
 		
 		
 
@@ -175,9 +175,10 @@ function Library:CreateTabHolder(HolderName)
 			Button.Name = "Button"
 			Button.Parent = Main
 			Button.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
-			Button.BorderSizePixel = 0
 			Button.Position = UDim2.new(-1.04635234e-07, 0, 0, 0)
-			Button.Size = UDim2.new(0.949999988, 0, 0, 27)
+			Button.Size = UDim2.new(0.949999988, 0, 0, 26)
+			Button.BorderSizePixel = 1
+			Button.BorderColor3 = Color3.fromRGB(74,74,74)
 			Button.Font = Enum.Font.SourceSans
 			Button.Text = (ButtonText and ButtonText or "nil")
 			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -193,10 +194,11 @@ function Library:CreateTabHolder(HolderName)
 			Label.Parent = Main
 			Label.Active = true
 			Label.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
-			Label.BorderSizePixel = 0
+			Label.BorderSizePixel = 1
+			Label.BorderColor3 = Color3.fromRGB(74,74,74)		
 			Label.Position = UDim2.new(-1.04635234e-07, 0, 0, 0)
 			Label.Selectable = true
-			Label.Size = UDim2.new(0.949999988, 0, 0,27)
+			Label.Size = UDim2.new(0.949999988, 0, 0,26)
 			Label.Font = Enum.Font.SourceSans
 			Label.Text = (Text and Text or "")
 			Label.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -209,21 +211,18 @@ function Library:CreateTabHolder(HolderName)
 			local ToggleFrame = Instance.new("Frame")
 			local Label = Instance.new("TextLabel")
 			local Button = Instance.new("TextButton")
-
-			--Properties:
-
 			ToggleFrame.Name = "ToggleFrame"
 			ToggleFrame.Parent = Main
 			ToggleFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			ToggleFrame.BackgroundTransparency = 1.000
-			ToggleFrame.BorderSizePixel = 0
-			ToggleFrame.Size = UDim2.new(0.949999988, 0, 0,27)
+			ToggleFrame.Size = UDim2.new(0.949999988, 0, 0,28)
 			ToggleFrame.LayoutOrder = Count
 
 			Label.Name = "Label"
 			Label.Parent = ToggleFrame
 			Label.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
-			Label.BorderSizePixel = 0
+			Label.BorderSizePixel = 1
+			Label.BorderColor3 = Color3.fromRGB(74,74,74)
 			Label.Position = UDim2.new(3.11126058e-07, 0, 0, 0)
 			Label.Size = UDim2.new(1, 0, 1, 0)
 			Label.Font = Enum.Font.SourceSans
@@ -273,7 +272,8 @@ function Library:CreateTabHolder(HolderName)
 			local TextBox = Instance.new("TextBox")
 			TextBox.Parent = Main
 			TextBox.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
-			TextBox.BorderSizePixel = 0
+			TextBox.BorderSizePixel = 1
+			TextBox.BorderColor3 = Color3.fromRGB(74,74,74)
 			TextBox.Position = UDim2.new(-1.04635234e-07, 0, 0, 0)
 			TextBox.Size = UDim2.new(0.949999988, 0, 0,27)
 			TextBox.Font = Enum.Font.SourceSans
@@ -294,7 +294,7 @@ function Library:CreateTabHolder(HolderName)
 			local Dropdown_Frame = Instance.new("ScrollingFrame")
 			local UIListLayout = Instance.new("UIListLayout")
 			local Template = Instance.new("TextButton")
-			Template.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+			Template.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 			Template.BorderSizePixel = 0
 			Template.Position = UDim2.new(0.0644602478, 0, 0, 0)
 			Template.Size = UDim2.new(0.870999992, 0, 0, 20)
@@ -304,6 +304,8 @@ function Library:CreateTabHolder(HolderName)
 			Template.TextScaled = false
 			Template.TextSize = 16.000
 			Template.TextWrapped = true
+			Template.BorderSizePixel = 1
+			Template.BorderColor3 = Color3.fromRGB(74,74,74)
 			
 			local Dropdown = Instance.new("TextLabel")
 			local DropdownButton = Instance.new("TextButton")
@@ -312,10 +314,11 @@ function Library:CreateTabHolder(HolderName)
 			Dropdown.Parent = Main
 			Dropdown.Active = true
 			Dropdown.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
-			Dropdown.BorderSizePixel = 0
+			Dropdown.BorderSizePixel = 1
+			Dropdown.BorderColor3 = Color3.fromRGB(74,74,74)
 			Dropdown.Position = UDim2.new(0.0234603062, 0, -0.00937500037, 0)
 			Dropdown.Selectable = true
-			Dropdown.Size = UDim2.new(0.949999988, 0, 0,27)
+			Dropdown.Size = UDim2.new(0.949999988, 0, 0,26)
 			Dropdown.Font = Enum.Font.SourceSans
 			Dropdown.Text = (DropdownText and DropdownText or "nil")
 			Dropdown.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -348,6 +351,8 @@ function Library:CreateTabHolder(HolderName)
 			Dropdown_Frame.ScrollBarThickness = 5
 			Dropdown_Frame.LayoutOrder = Count
 			Dropdown_Frame.Visible = false
+			Dropdown_Frame.BorderSizePixel = 1
+			Dropdown_Frame.BorderColor3 = Color3.fromRGB(74,74,74)
 
 			UIListLayout.Parent = Dropdown_Frame
 			UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
@@ -448,7 +453,10 @@ function Library:CreateTabHolder(HolderName)
 			SliderFrame.Position = UDim2.new(0.0250000935, 0, 0.681249976, 0)
 			SliderFrame.Size = UDim2.new(0.949999988, 0, 0, 42)
 			SliderFrame.LayoutOrder = Count
-
+			SliderFrame.BorderSizePixel = 1
+			SliderFrame.BorderColor3 = Color3.fromRGB(74,74,74)
+			
+			
 			Text.Name = "Text"
 			Text.Parent = SliderFrame
 			Text.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
@@ -541,10 +549,10 @@ function Library:CreateTabHolder(HolderName)
 		if Corner then
 			local UICorner = Instance.new("UICorner")
 			UICorner.Parent = TabButton
-			UICorner.CornerRadius = UDim.new(0,4)
+			UICorner.CornerRadius = UDim.new(0,3)
 
 			local UICorner2 = Instance.new("UICorner")
-			UICorner.CornerRadius = UDim.new(0,4)
+			UICorner.CornerRadius = UDim.new(0,3)
 			UICorner2.Parent = MainHolder
 
 			Line.Visible = false
@@ -582,5 +590,5 @@ function Library:CreateTabHolder(HolderName)
 	return Functions
 	
 end
---hi
+--bye
 return Library
