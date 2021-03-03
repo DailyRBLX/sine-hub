@@ -41,9 +41,12 @@ function Library:CreateTabHolder(HolderName)
 		local TabButton = Instance.new("TextButton")
 		local Line = Instance.new("Frame")
 		local Name = Instance.new("TextLabel")
-		local MainHolder = Instance.new("ScrollingFrame")
+		local MainHolder = Instance.new("Frame")
 		local UIListLayout = Instance.new("UIListLayout")
 		local UIListLayout_2 = Instance.new("UIListLayout")
+		local Main = Instance.new("ScrollingFrame")
+		local UICorner = Instance.new("UICorner")
+		UICorner.CornerRadius = UDim.new(0,4)
 		
 		TabButton.Name = "TabButton"
 		TabButton.Parent = TabsHolder
@@ -84,15 +87,31 @@ function Library:CreateTabHolder(HolderName)
 		MainHolder.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 		MainHolder.BorderSizePixel = 0
 		MainHolder.Position = UDim2.new(1.08900011, 0, 0, 0)
-		MainHolder.Size = UDim2.new(0, 0, 1, 0)
-		MainHolder.CanvasSize = UDim2.new(0, 0, 50, 0)
-		MainHolder.ScrollBarThickness = 0
-		MainHolder.ScrollingEnabled = false
+		
+		Main.Name = "Main"
+		Main.Parent = MainHolder
+		Main.BackgroundTransparency = 1
+		Main.Size = UDim2.new(1, 0, 1, 0)
+		Main.CanvasSize = UDim2.new(0, 0, 50, 0)
+		Main.ScrollBarThickness = 0
+		Main.ScrollingEnabled = false
 
-		UIListLayout.Parent = MainHolder
+		UIListLayout.Parent = Main
 		UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		UIListLayout.Padding = UDim.new(0, 5)
+		UIListLayout.Padding = UDim.new(0, 4)
+		
+		
+
+		--Properties:
+		local Frame = Instance.new("Frame")
+		Frame.Parent = Main
+		Frame.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+		Frame.BorderSizePixel = 0
+		Frame.Position = UDim2.new(0.249373436, 0, 0, 0)
+		Frame.Size = UDim2.new(0, 0, 0, 6)
+		Frame.LayoutOrder = Count
+		Count += 1
 		
 		
 		Tabs[TabName] = {Button = TabButton,Enabled = false,Debounce = false}
@@ -106,43 +125,43 @@ function Library:CreateTabHolder(HolderName)
 					if v.Button ~= TabButton then
 						if v.Enabled == true then
 							v.Debounce = true
-							local Tween_1 = TweenService:Create(v.Button.MainHolder,TabCloseTween,{Size = UDim2.new(1.1,0,1,0)})
+							local Tween_1 = TweenService:Create(v.Button.MainHolder,TabCloseTween,{Size = UDim2.new(1.275,0,1,0)})
 							local Tween_2 = TweenService:Create(v.Button.MainHolder,TabCloseTween,{Size = UDim2.new(0,0,1,0)})
-							local Tween_2_Scroll_1 = TweenService:Create(v.Button.MainHolder,TabCloseTween,{ScrollBarThickness = 0})
+							local Tween_2_Scroll_1 = TweenService:Create(v.Button.MainHolder.Main,TabCloseTween,{ScrollBarThickness = 0})
 							Tween_2_Scroll_1:Play()
 							Tween_2_Scroll_1.Completed:Wait()
 							Tween_1:Play()
 							Tween_1.Completed:Wait()
 							Tween_2:Play()
 							Tween_2.Completed:Wait()
-							v.Button.MainHolder.ScrollingEnabled = false
+							v.Button.MainHolder.Main.ScrollingEnabled = false
 							v.Enabled = false
 							v.Debounce = false
 						end
 					end
 				end
-				local Tween_1 = TweenService:Create(MainHolder,TabOpenTween,{Size = UDim2.new(1.1,0,1,0)})
-				local Tween_2 = TweenService:Create(MainHolder,TabOpenTween,{Size = UDim2.new(1.1,0,10,0)})
-				local Tween_2_Scroll_1 = TweenService:Create(MainHolder,TabOpenTween,{ScrollBarThickness = 4})
+				local Tween_1 = TweenService:Create(MainHolder,TabOpenTween,{Size = UDim2.new(1.275,0,1,0)})
+				local Tween_2 = TweenService:Create(MainHolder,TabOpenTween,{Size = UDim2.new(1.275,0,10,0)})
+				local Tween_2_Scroll_1 = TweenService:Create(Main,TabOpenTween,{ScrollBarThickness = 4})
 				Tween_1:Play()
 				Tween_1.Completed:Wait()
 				Tween_2:Play()
 				Tween_2.Completed:Wait()
 				Tween_2_Scroll_1:Play()
 				Tween_2_Scroll_1.Completed:Wait()
-				MainHolder.ScrollingEnabled = true
+				Main.ScrollingEnabled = true
 				Tabs[TabName].Enabled = true
 			else
-				local Tween_1 = TweenService:Create(MainHolder,TabCloseTween,{Size = UDim2.new(1.1,0,1,0)})
+				local Tween_1 = TweenService:Create(MainHolder,TabCloseTween,{Size = UDim2.new(1.275,0,1,0)})
 				local Tween_2 = TweenService:Create(MainHolder,TabCloseTween,{Size = UDim2.new(0,0,1,0)})
-				local Tween_2_Scroll_1 = TweenService:Create(MainHolder,TabCloseTween,{ScrollBarThickness = 0})
+				local Tween_2_Scroll_1 = TweenService:Create(Main,TabCloseTween,{ScrollBarThickness = 0})
 				Tween_2_Scroll_1:Play()
 				Tween_2_Scroll_1.Completed:Wait()
 				Tween_1:Play()
 				Tween_1.Completed:Wait()
 				Tween_2:Play()
 				Tween_2.Completed:Wait()
-				MainHolder.ScrollingEnabled = false
+				Main.ScrollingEnabled = false
 				Tabs[TabName].Enabled = false
 			end
 			Tabs[TabName].Debounce = false
@@ -154,15 +173,15 @@ function Library:CreateTabHolder(HolderName)
 			Count += 1
 			local Button = Instance.new("TextButton")
 			Button.Name = "Button"
-			Button.Parent = MainHolder
+			Button.Parent = Main
 			Button.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 			Button.BorderSizePixel = 0
 			Button.Position = UDim2.new(-1.04635234e-07, 0, 0, 0)
-			Button.Size = UDim2.new(0.949999988, 0, 0, 25)
+			Button.Size = UDim2.new(0.949999988, 0, 0, 27)
 			Button.Font = Enum.Font.SourceSans
 			Button.Text = (ButtonText and ButtonText or "nil")
 			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
-			Button.TextSize = 18.000
+			Button.TextSize = 16.000
 			Button.LayoutOrder = Count
 			
 			Button.MouseButton1Click:Connect(Callback)
@@ -171,58 +190,59 @@ function Library:CreateTabHolder(HolderName)
 		function ButtonFunctions:Label(Text)
 			local Label = Instance.new("TextLabel")
 			Label.Name = "Label"
-			Label.Parent = MainHolder
+			Label.Parent = Main
 			Label.Active = true
 			Label.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 			Label.BorderSizePixel = 0
 			Label.Position = UDim2.new(-1.04635234e-07, 0, 0, 0)
 			Label.Selectable = true
-			Label.Size = UDim2.new(0.949999988, 0, 0, 25)
+			Label.Size = UDim2.new(0.949999988, 0, 0,27)
 			Label.Font = Enum.Font.SourceSans
 			Label.Text = (Text and Text or "")
 			Label.TextColor3 = Color3.fromRGB(255, 255, 255)
-			Label.TextSize = 18.000
+			Label.TextSize = 16.000
 		end
 		
 		function ButtonFunctions:Toggle(ToggleText,Callback,Default)
 			Count += 1
 			local Enabled = (Default and Default or false)
 			local ToggleFrame = Instance.new("Frame")
-			local Button = Instance.new("TextButton")
 			local Label = Instance.new("TextLabel")
-			
+			local Button = Instance.new("TextButton")
+
+			--Properties:
+
 			ToggleFrame.Name = "ToggleFrame"
-			ToggleFrame.Parent = MainHolder
+			ToggleFrame.Parent = Main
 			ToggleFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			ToggleFrame.BackgroundTransparency = 1.000
 			ToggleFrame.BorderSizePixel = 0
-			ToggleFrame.Size = UDim2.new(0.949999988, 0, 0, 25)
+			ToggleFrame.Size = UDim2.new(0.949999988, 0, 0,27)
 			ToggleFrame.LayoutOrder = Count
-
-			Button.Name = "Button"
-			Button.Parent = ToggleFrame
-			Button.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
-			Button.BorderColor3 = Color3.fromRGB(94, 94, 93)
-			Button.Position = UDim2.new(0.836000025, 0, 0, 0)
-			Button.Size = UDim2.new(0.159999996, 0, 1, 0)
-			Button.Font = Enum.Font.SourceSans
-			Button.Text = "X"
-			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
-			Button.TextScaled = true
-			Button.TextSize = 14.000
-			Button.TextWrapped = true
-			Button.BorderSizePixel = 0
 
 			Label.Name = "Label"
 			Label.Parent = ToggleFrame
 			Label.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 			Label.BorderSizePixel = 0
-			Label.Size = UDim2.new(0.791999996, 0, 0, 25)
+			Label.Position = UDim2.new(3.11126058e-07, 0, 0, 0)
+			Label.Size = UDim2.new(1, 0, 1, 0)
 			Label.Font = Enum.Font.SourceSans
 			Label.Text = "  "..ToggleText
 			Label.TextColor3 = Color3.fromRGB(255, 255, 255)
-			Label.TextSize = 18.000
+			Label.TextSize = 16.000
 			Label.TextXAlignment = Enum.TextXAlignment.Left
+
+			Button.Parent = Label
+			Button.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+			Button.BorderColor3 = Color3.fromRGB(133, 133, 133)
+			Button.Position = UDim2.new(0.875204504, 0, 0.199999988, 0)
+			Button.Size = UDim2.new(0.095, 0,0.6, 0)
+			Button.Font = Enum.Font.SourceSans
+			Button.Text = ""
+			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Button.TextScaled = false
+			Button.TextSize = 16.000
+			Button.TextWrapped = true
 
 			Button.MouseButton1Click:Connect(function()
 				Enabled = not Enabled
@@ -251,16 +271,16 @@ function Library:CreateTabHolder(HolderName)
 		function ButtonFunctions:TextBox(PlaceholderText,DefaultText,Callback)
 			Count += 1
 			local TextBox = Instance.new("TextBox")
-			TextBox.Parent = MainHolder
+			TextBox.Parent = Main
 			TextBox.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 			TextBox.BorderSizePixel = 0
 			TextBox.Position = UDim2.new(-1.04635234e-07, 0, 0, 0)
-			TextBox.Size = UDim2.new(0.949999988, 0, 0, 25)
+			TextBox.Size = UDim2.new(0.949999988, 0, 0,27)
 			TextBox.Font = Enum.Font.SourceSans
 			TextBox.PlaceholderText = (PlaceholderText and PlaceholderText or "nil")
 			TextBox.Text = (DefaultText and DefaultText or "")
 			TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextBox.TextSize = 18.000
+			TextBox.TextSize = 16.000
 			TextBox.LayoutOrder = Count
 
 			TextBox.FocusLost:Connect(function()
@@ -281,25 +301,25 @@ function Library:CreateTabHolder(HolderName)
 			Template.Font = Enum.Font.SourceSans
 			Template.Text = "Circle"
 			Template.TextColor3 = Color3.fromRGB(255, 255, 255)
-			Template.TextScaled = true
-			Template.TextSize = 14.000
+			Template.TextScaled = false
+			Template.TextSize = 16.000
 			Template.TextWrapped = true
 			
 			local Dropdown = Instance.new("TextLabel")
 			local DropdownButton = Instance.new("TextButton")
 			
 			Dropdown.Name = "Dropdown"
-			Dropdown.Parent = MainHolder
+			Dropdown.Parent = Main
 			Dropdown.Active = true
 			Dropdown.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 			Dropdown.BorderSizePixel = 0
 			Dropdown.Position = UDim2.new(0.0234603062, 0, -0.00937500037, 0)
 			Dropdown.Selectable = true
-			Dropdown.Size = UDim2.new(0.949999988, 0, 0, 25)
+			Dropdown.Size = UDim2.new(0.949999988, 0, 0,27)
 			Dropdown.Font = Enum.Font.SourceSans
 			Dropdown.Text = (DropdownText and DropdownText or "nil")
 			Dropdown.TextColor3 = Color3.fromRGB(255, 255, 255)
-			Dropdown.TextSize = 18.000
+			Dropdown.TextSize = 16.000
 			Dropdown.LayoutOrder = Count
 			
 			DropdownButton.Name = "DropdownButton"
@@ -313,12 +333,12 @@ function Library:CreateTabHolder(HolderName)
 			DropdownButton.Text = "∨"
 			DropdownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropdownButton.TextScaled = true
-			DropdownButton.TextSize = 18.000
+			DropdownButton.TextSize = 16.000
 			DropdownButton.TextWrapped = true
 			Count += 1
 			
 			Dropdown_Frame.Name = "Dropdown_Frame"
-			Dropdown_Frame.Parent = MainHolder
+			Dropdown_Frame.Parent = Main
 			Dropdown_Frame.Active = true
 			Dropdown_Frame.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 			Dropdown_Frame.BorderSizePixel = 0
@@ -415,26 +435,30 @@ function Library:CreateTabHolder(HolderName)
 			local SliderFrame = Instance.new("Frame")
 			local Text = Instance.new("TextLabel")
 			local SlideValue = Instance.new("TextLabel")
+			local SliderMain = Instance.new("TextButton")
 			local Slider = Instance.new("Frame")
-			local ImageButton = Instance.new("ImageButton")
+			local SliderGround = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local UICorner_2 = Instance.new("UICorner")
 
 			SliderFrame.Name = "SliderFrame"
-			SliderFrame.Parent = MainHolder
+			SliderFrame.Parent = Main
 			SliderFrame.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 			SliderFrame.BorderSizePixel = 0
 			SliderFrame.Position = UDim2.new(0.0250000935, 0, 0.681249976, 0)
 			SliderFrame.Size = UDim2.new(0.949999988, 0, 0, 42)
+			SliderFrame.LayoutOrder = Count
 
 			Text.Name = "Text"
 			Text.Parent = SliderFrame
 			Text.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 			Text.BorderSizePixel = 0
-			Text.Position = UDim2.new(0.0590880774, 0, 0.0556063876, 0)
-			Text.Size = UDim2.new(0.764999986, 0, 0.474999994, 0)
+			Text.Position = UDim2.new(0.0650001466, 0, 0.0556062981, 0)
+			Text.Size = UDim2.new(0.75908792, 0, 0.474999964, 0)
 			Text.Font = Enum.Font.SourceSans
 			Text.Text = SliderText
 			Text.TextColor3 = Color3.fromRGB(255, 255, 255)
-			Text.TextSize = 18.000
+			Text.TextSize = 16.000
 			Text.TextXAlignment = Enum.TextXAlignment.Left
 
 			SlideValue.Name = "SlideValue"
@@ -449,29 +473,47 @@ function Library:CreateTabHolder(HolderName)
 			SlideValue.Font = Enum.Font.SourceSans
 			SlideValue.Text = Default
 			SlideValue.TextColor3 = Color3.fromRGB(255, 255, 255)
-			SlideValue.TextScaled = true
-			SlideValue.TextSize = 14.000
+			SlideValue.TextSize = 18.000
 			SlideValue.TextWrapped = true
 
+			SliderMain.Name = "SliderMain"
+			SliderMain.Parent = SliderFrame
+			SliderMain.Active = true
+			SliderMain.AnchorPoint = Vector2.new(0, 0.5)
+			SliderMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			SliderMain.BackgroundTransparency = 1.000
+			SliderMain.BorderSizePixel = 0
+			SliderMain.Position = UDim2.new(0.0649999976, 0, 0.75, 0)
+			SliderMain.Selectable = false
+			SliderMain.Size = UDim2.new(0.86500001, 0, 0.200000003, 0)
+			SliderMain.ZIndex = 1
+			SliderMain.Text = ""
+			SliderMain.TextColor3 = Color3.fromRGB(0, 0, 0)
+
 			Slider.Name = "Slider"
-			Slider.Parent = SliderFrame
+			Slider.Parent = SliderMain
 			Slider.BackgroundColor3 = Color3.fromRGB(59, 59, 59)
 			Slider.BorderSizePixel = 0
-			Slider.Position = UDim2.new(0.0645000711, 0, 0.70203495, 0)
-			Slider.Size = UDim2.new(0.86500001, 0, 0.135000005, 0)
+			Slider.Size = UDim2.new(1, 0, 1, 0)
 
-			ImageButton.Parent = Slider
-			ImageButton.AnchorPoint = Vector2.new(0, 0.5)
-			ImageButton.BackgroundColor3 = Color3.fromRGB(133, 133, 133)
-			ImageButton.BorderSizePixel = 0
-			ImageButton.Position = UDim2.new(0, 0, 0.5, 0)
-			ImageButton.Size = UDim2.new(0.0500000007, 0, 2.20000005, 0)
+			SliderGround.Name = "SliderGround"
+			SliderGround.Parent = Slider
+			SliderGround.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			SliderGround.BorderColor3 = Color3.fromRGB(27, 42, 53)
+			SliderGround.BorderSizePixel = 0
+			SliderGround.Size = UDim2.new(0, 0, 1, 0)
 			
-			ImageButton.MouseButton1Down:Connect(function()
+			
+			UICorner.Parent = SliderGround
+			UICorner_2.Parent = Slider
+			
+			SliderMain.MouseButton1Down:Connect(function()
 				SliderHeld = true
 			end)
-			ImageButton.MouseButton1Up:Connect(function()
-				SliderHeld = false
+			UIS.InputEnded:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 and SliderHeld == true then
+					SliderHeld = false
+				end
 			end)
 			
 			local function Update()
@@ -481,10 +523,12 @@ function Library:CreateTabHolder(HolderName)
 				local pos = (MousePos-Position)/Size
 				local value = pos*Max
 				local newpos = math.clamp(pos,0,1)
-				ImageButton.Position = UDim2.new(math.clamp(newpos,0,1),0,0.5,0)
+				SliderGround.Size = UDim2.new(math.clamp(newpos,0,1),0,1,0)
 				Callback(math.clamp(math.floor(value),Min,Max))
 				SlideValue.Text = math.clamp(math.floor(value),Min,Max)
 			end
+			
+			SliderGround.Size = UDim2.new(math.clamp(Default/Max,0,1),0,1,0)
 			
 			RunService:BindToRenderStep("Slider_"..SliderText,200,function()
 				if SliderHeld then
@@ -499,12 +543,28 @@ function Library:CreateTabHolder(HolderName)
 			UICorner.Parent = TabButton
 			UICorner.CornerRadius = UDim.new(0,4)
 
-			local UICorner2 = UICorner:Clone()
+			local UICorner2 = Instance.new("UICorner")
+			UICorner.CornerRadius = UDim.new(0,4)
 			UICorner2.Parent = MainHolder
-			UICorner2.CornerRadius = UDim.new(0,4)
 
 			Line.Visible = false
 		end
+		
+		local function MainUpdate()
+			local size = 0
+			for i,v in pairs(Main:GetChildren()) do
+				if not v:IsA("UIBase") then
+					size += v.Size.Y.Offset + UIListLayout.Padding.Offset
+				end
+			end
+			Main.CanvasSize = UDim2.new(0,0,0,size)
+		end
+		
+		MainUpdate()
+		Main.ChildAdded:Connect(function()
+			wait()
+			MainUpdate()
+		end)
 		
 		return ButtonFunctions
 		
@@ -517,8 +577,10 @@ function Library:CreateTabHolder(HolderName)
 		end
 	end)
 	
+
+	
 	return Functions
 	
 end
-
+--hi
 return Library
