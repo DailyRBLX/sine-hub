@@ -529,7 +529,7 @@ function Library:CreateTabHolder(HolderName)
 				local Position = Slider.AbsolutePosition.X
 				local Size = Slider.AbsoluteSize.X
 				local percent = (MousePos.X - Position) / Size
-				local realvalue = math.floor(Min + (Max - Min) * percent)
+				local realvalue = math.clamp(math.floor(Min + (Max - Min) * percent),Min,Max)
 				local newpos = math.clamp(percent,0,1)
 				SliderGround.Size = UDim2.new(math.clamp(newpos,0,1),0,1,0)
 				Callback(realvalue,Min,Max)
