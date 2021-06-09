@@ -528,7 +528,7 @@ function Library:CreateTabHolder(HolderName)
 				local MousePos = UIS:GetMouseLocation().X
 				local Position = Slider.AbsolutePosition.X
 				local Size = Slider.AbsoluteSize.X
-				local pos = (MousePos-Position)/Size
+				local pos = math.floor((MousePos-Position)/Size)
 				local value = math.floor(pos*Max)
 				local newpos = math.clamp(pos,0,1)
 				SliderGround.Size = UDim2.new(math.clamp(newpos,0,1),0,1,0)
