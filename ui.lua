@@ -477,7 +477,7 @@ function Library:CreateTabHolder(HolderName)
 			SlideValue.BorderSizePixel = 0
 			SlideValue.Position = UDim2.new(0.82447201, 0, 0.055606328, 0)
 			SlideValue.Selectable = true
-			SlideValue.Size = UDim2.new(0.100383677, 0, 0.474999994, 0)
+			SlideValue.Size = UDim2.new(0.12, 0, 0.474999994, 0)
 			SlideValue.Font = Enum.Font.SourceSans
 			SlideValue.Text = Default
 			SlideValue.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -525,18 +525,18 @@ function Library:CreateTabHolder(HolderName)
 			end)
 			
 			local function Update()
-				local MousePos = UIS:GetMouseLocation().X
+				local MousePos = UIS:GetMouseLocation()
 				local Position = Slider.AbsolutePosition.X
 				local Size = Slider.AbsoluteSize.X
-				local pos = math.floor((MousePos-Position)/Size)
-				local value = math.floor(pos*Max)
-				local newpos = math.clamp(pos,0,1)
+				local percent = (MousePos.X - Position) / Size
+				local realvalue = math.floor(Min + (Max - Min) * percent)
+				local newpos = math.clamp(percent,0,1)
 				SliderGround.Size = UDim2.new(math.clamp(newpos,0,1),0,1,0)
-				Callback(math.clamp(math.floor(value),Min,Max))
-				SlideValue.Text = math.clamp(math.floor(value),Min,Max)
+				Callback(realvalue,Min,Max)
+				SlideValue.Text = math.clamp(realvalue,Min,Max)
 			end
 			
-			SliderGround.Size = UDim2.new(math.clamp(Default/Max,0,1),0,1,0)
+			SliderGround.Size = UDim2.new(math.floor(math.clamp(Default/Max,0,1)),0,1,0)
 			
 			RunService:BindToRenderStep("Slider_"..SliderText,200,function()
 				if SliderHeld then
@@ -590,5 +590,4 @@ function Library:CreateTabHolder(HolderName)
 	return Functions
 	
 end
---bye
 return Library
